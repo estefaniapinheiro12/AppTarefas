@@ -14,6 +14,14 @@
 		027E182D2D0BD71700E9AFFD /* Gerenciador_de_TarefasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E182C2D0BD71700E9AFFD /* Gerenciador_de_TarefasTests.swift */; };
 		027E18372D0BD71700E9AFFD /* Gerenciador_de_TarefasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E18362D0BD71700E9AFFD /* Gerenciador_de_TarefasUITests.swift */; };
 		027E18392D0BD71700E9AFFD /* Gerenciador_de_TarefasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E18382D0BD71700E9AFFD /* Gerenciador_de_TarefasUITestsLaunchTests.swift */; };
+		027E18472D0BD88800E9AFFD /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E18462D0BD88800E9AFFD /* Login.swift */; };
+		027E18492D0C7F9800E9AFFD /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E18482D0C7F9800E9AFFD /* SignUp.swift */; };
+		027E184C2D0C810100E9AFFD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E184B2D0C810100E9AFFD /* Color.swift */; };
+		027E184E2D0C833400E9AFFD /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E184D2D0C833400E9AFFD /* Home.swift */; };
+		0283A2F12D15D58700A63B99 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F02D15D58700A63B99 /* Splash.swift */; };
+		0283A2F32D199A1100A63B99 /* CreateReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F22D199A1100A63B99 /* CreateReminder.swift */; };
+		0283A2F52D1C70F700A63B99 /* EditReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F42D1C70F700A63B99 /* EditReminder.swift */; };
+		0283A2F72D21822C00A63B99 /* ViewReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F62D21822C00A63B99 /* ViewReminder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		027E18322D0BD71700E9AFFD /* Gerenciador-de-TarefasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gerenciador-de-TarefasUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		027E18362D0BD71700E9AFFD /* Gerenciador_de_TarefasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gerenciador_de_TarefasUITests.swift; sourceTree = "<group>"; };
 		027E18382D0BD71700E9AFFD /* Gerenciador_de_TarefasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gerenciador_de_TarefasUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		027E18462D0BD88800E9AFFD /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		027E18482D0C7F9800E9AFFD /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		027E184B2D0C810100E9AFFD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		027E184D2D0C833400E9AFFD /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		0283A2F02D15D58700A63B99 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
+		0283A2F22D199A1100A63B99 /* CreateReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminder.swift; sourceTree = "<group>"; };
+		0283A2F42D1C70F700A63B99 /* EditReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminder.swift; sourceTree = "<group>"; };
+		0283A2F62D21822C00A63B99 /* ViewReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReminder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,8 @@
 		027E181A2D0BD71600E9AFFD /* Gerenciador-de-Tarefas */ = {
 			isa = PBXGroup;
 			children = (
+				027E184A2D0C80F000E9AFFD /* utils */,
+				027E18452D0BD87200E9AFFD /* Screens */,
 				027E181B2D0BD71600E9AFFD /* Gerenciador_de_TarefasApp.swift */,
 				027E181D2D0BD71600E9AFFD /* ContentView.swift */,
 				027E181F2D0BD71700E9AFFD /* Assets.xcassets */,
@@ -125,6 +143,28 @@
 				027E18382D0BD71700E9AFFD /* Gerenciador_de_TarefasUITestsLaunchTests.swift */,
 			);
 			path = "Gerenciador-de-TarefasUITests";
+			sourceTree = "<group>";
+		};
+		027E18452D0BD87200E9AFFD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				027E18462D0BD88800E9AFFD /* Login.swift */,
+				027E184D2D0C833400E9AFFD /* Home.swift */,
+				027E18482D0C7F9800E9AFFD /* SignUp.swift */,
+				0283A2F02D15D58700A63B99 /* Splash.swift */,
+				0283A2F22D199A1100A63B99 /* CreateReminder.swift */,
+				0283A2F42D1C70F700A63B99 /* EditReminder.swift */,
+				0283A2F62D21822C00A63B99 /* ViewReminder.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		027E184A2D0C80F000E9AFFD /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				027E184B2D0C810100E9AFFD /* Color.swift */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +297,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0283A2F12D15D58700A63B99 /* Splash.swift in Sources */,
+				0283A2F52D1C70F700A63B99 /* EditReminder.swift in Sources */,
+				0283A2F32D199A1100A63B99 /* CreateReminder.swift in Sources */,
+				027E18472D0BD88800E9AFFD /* Login.swift in Sources */,
+				027E18492D0C7F9800E9AFFD /* SignUp.swift in Sources */,
 				027E181E2D0BD71600E9AFFD /* ContentView.swift in Sources */,
+				027E184C2D0C810100E9AFFD /* Color.swift in Sources */,
+				027E184E2D0C833400E9AFFD /* Home.swift in Sources */,
+				0283A2F72D21822C00A63B99 /* ViewReminder.swift in Sources */,
 				027E181C2D0BD71600E9AFFD /* Gerenciador_de_TarefasApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
