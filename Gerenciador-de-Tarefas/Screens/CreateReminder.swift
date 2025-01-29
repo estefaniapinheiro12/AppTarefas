@@ -9,11 +9,13 @@ import Foundation
 import SwiftUI
 
 struct CreateReminder: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var dueDate = Date()
     @State private var taskTitle = ""
     @State private var taskDescription = ""
     
     var body: some View {
+
         VStack {
             TextField("Título da tarefa", text: $taskTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -43,6 +45,18 @@ struct CreateReminder: View {
             }
         }
         .navigationTitle("Criar Lembrete")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    Text("Voltar")
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                }
+            }
+        }
         .padding()
         
     }
@@ -58,6 +72,8 @@ struct CreateReminder: View {
     }
 }
 #Preview {
-    CreateReminder()
+    NavigationView{
+        CreateReminder()
+    }
 }
 

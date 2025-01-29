@@ -22,6 +22,7 @@
 		0283A2F32D199A1100A63B99 /* CreateReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F22D199A1100A63B99 /* CreateReminder.swift */; };
 		0283A2F52D1C70F700A63B99 /* EditReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F42D1C70F700A63B99 /* EditReminder.swift */; };
 		0283A2F72D21822C00A63B99 /* ViewReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F62D21822C00A63B99 /* ViewReminder.swift */; };
+		0283A2FA2D3190FA00A63B99 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A2F92D3190FA00A63B99 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		0283A2F22D199A1100A63B99 /* CreateReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminder.swift; sourceTree = "<group>"; };
 		0283A2F42D1C70F700A63B99 /* EditReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminder.swift; sourceTree = "<group>"; };
 		0283A2F62D21822C00A63B99 /* ViewReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReminder.swift; sourceTree = "<group>"; };
+		0283A2F92D3190FA00A63B99 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				027E184A2D0C80F000E9AFFD /* utils */,
 				027E18452D0BD87200E9AFFD /* Screens */,
 				027E181B2D0BD71600E9AFFD /* Gerenciador_de_TarefasApp.swift */,
+				0283A2F82D3190E000A63B99 /* components */,
 				027E181D2D0BD71600E9AFFD /* ContentView.swift */,
 				027E181F2D0BD71700E9AFFD /* Assets.xcassets */,
 				027E18212D0BD71700E9AFFD /* Preview Content */,
@@ -165,6 +168,14 @@
 				027E184B2D0C810100E9AFFD /* Color.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		0283A2F82D3190E000A63B99 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				0283A2F92D3190FA00A63B99 /* Card.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 				027E184E2D0C833400E9AFFD /* Home.swift in Sources */,
 				0283A2F72D21822C00A63B99 /* ViewReminder.swift in Sources */,
 				027E181C2D0BD71600E9AFFD /* Gerenciador_de_TarefasApp.swift in Sources */,
+				0283A2FA2D3190FA00A63B99 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

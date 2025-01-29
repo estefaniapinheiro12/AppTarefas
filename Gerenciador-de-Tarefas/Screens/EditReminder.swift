@@ -14,7 +14,10 @@ struct EditReminder: View {
     @State private var taskDescription = ""
     @State private var taskDate = ""
     
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
+        NavigationView {
         VStack(alignment: .leading, spacing: 20) {
             TextField("Título da tarefa", text: $taskTitle)
                 .font(.largeTitle)
@@ -47,16 +50,31 @@ struct EditReminder: View {
                     .background(Color.blue)
                     .cornerRadius(10)
             }
-                .padding(.top)
-                
+            .padding(.top)
+            
             Spacer()
         }
         .padding()
         .navigationBarTitle("Editar Tarefa", displayMode: .inline)
-    }
-                   private func saveTask(){
-                print("Tarefa salva: \(taskTitle), \(taskDescription), \(taskDate)")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading){
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image (systemName: "chevron.backward")
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    Text("Voltar")
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                }
+                
+            }
         }
+    }
+}
+private func saveTask() {
+    print("Tarefa salva: \(taskTitle), \(taskDescription), \(taskDate)")
+    }
+    
 }
 #Preview {
     EditReminder()

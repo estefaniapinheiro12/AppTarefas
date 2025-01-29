@@ -10,26 +10,43 @@ import SwiftUI
 
 struct Splash: View {
     @State private var isActive = false
+    @State private var scaleEffect = 0.8
+    @State private var opacity = 0.5
     
     var body: some View {
         if isActive {
             Login()
         }else {
             ZStack {
-                Color.white
-                    .ignoresSafeArea()
+                
+                LinearGradient(
+                    gradient: Gradient (colors: [Color.blue, Color.purple]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                    
+                )
+                .ignoresSafeArea()
                 
                 VStack {
                     Image(systemName: "checkmark.circle")
                         .resizable()
-                        .frame(width: 200, height: 200)
-                        .foregroundColor(.blue)
+                        .frame(width: 150, height: 150)
+                        .foregroundColor(.white)
+                        .scaleEffect(scaleEffect)
+                        .opacity(opacity)
+                        .onAppear{
+                            withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
+                                scaleEffect = 1.0
+                                opacity = 1.0
+                            }
+                        }
                     
                     Text("Gerenciador de Tarefas")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                        .padding(.top, 20)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.white.opacity(0.8))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 10)
+                        .padding(.horizontal, 40)
                 }
             }
             .onAppear {

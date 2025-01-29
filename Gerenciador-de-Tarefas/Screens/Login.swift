@@ -1,80 +1,130 @@
 import SwiftUI
 
 struct Login: View{
-    @State private var email: String = ""
+    @State private var usuario: String = ""
     @State private var password: String = ""
     
     var body: some View{
         NavigationView{
             ZStack{
-                Color(hex: "EAB88C")
-                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                LinearGradient (
+                    gradient: Gradient(colors: [Color(Color.blue.opacity(0.8)), Color.purple.opacity(0.7)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .edgesIgnoringSafeArea(.all)
+                
                 
                 VStack(spacing: 20){
-                    Text("Lembretes App")
+                    Text("TaskFlow")
                         .font(.largeTitle)
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
                         .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 5)
+                    
+                    
                     VStack(spacing: 20){
+                        CustomTextField (
+                            icon: "person.fill",
+                            placeholder: "Digite seu usuário",
+                            text: $usuario
+                        )
                         
-                        
-                        VStack(alignment: .leading, spacing: 15){
-                            Text("Email: ")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            
-                            TextField("Digite seu email: ", text: $email)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(8)
-                        }
-                        VStack(alignment: .leading, spacing: 15){
-                            Text("Senha: ")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            
-                            SecureField("Digite sua senha: ", text: $password)
-                                .padding()
-                                .background(Color.white)
-                                .cornerRadius(8)
-                        }
-                        
-                        HStack{
-                            Spacer()
-                            Text("Não possui conta ?")
-                                .font(.subheadline)
-                                .foregroundColor(.white)
-                            
-                            NavigationLink(destination: SignUp()){
-                                Text("Cadastre-se")
-                                    .font(.subheadline)
-                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                            }
-                        }
+                        CustomSecureField (
+                            icon: "lock.fill",
+                            placeholder: "Digite sua senha",
+                            text: $password
+                        )
                     }
+                    
                     .padding()
-                    .background(Color(hex: "D0A580"))
+                    .background(Color.white.opacity(0.1))
                     .cornerRadius(15)
                     .padding(.horizontal, 30)
                     
-                    NavigationLink(destination: Home()){
+                    Spacer()
+                    
+                    NavigationLink(destination: Home()) {
                         Text("Entrar")
                             .font(.headline)
-                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .fontWeight(.bold)
                             .foregroundColor(.white)
                             .padding()
-                            .background(Color.green)
+                            .frame(maxWidth: .infinity)
+                            .background(LinearGradient (
+                                gradient: Gradient(colors: [Color.green, Color.green.opacity(0.8)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                            )
                             .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x:0, y: 5)
+                            .padding(.horizontal, 50)
                     }
-                    .padding(.horizontal, 50)
+                    .buttonStyle(ScaleButtonStyle())
+                    
+                    HStack (spacing: 5){
+                        Text("Não possui conta?")
+                            .foregroundColor(.white)
+                        
+                        NavigationLink(destination: SignUp()) {
+                            Text("Cadastre-se")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.blue.opacity(0.9))
+                            
+                        }
+                    }
+                    
+                    .padding(.vertical, 50)
+                    
                 }
             }
         }
     }
+    struct CustomTextField: View {
+        var icon: String
+        var placeholder: String
+        @Binding var text: String
+        
+        var body: some View {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(.gray)
+                TextField(placeholder, text: $text)
+                    .textInputAutocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .disableAutocorrection(true)
+            }
+            .padding()
+            .background(Color.white.opacity(0.9))
+            .cornerRadius(10)
+        }
+    }
+    
+    struct CustomSecureField: View {
+        var icon: String
+        var placeholder: String
+        @Binding var text: String
+        
+        var body: some View {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(.gray)
+                SecureField(placeholder, text: $text)
+            }
+            .padding()
+            .background(Color.white.opacity(0.9))
+            .cornerRadius(10)
+        }
+    }
+    struct ScaleButtonStyle: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .scaleEffect(configuration.isPressed ? 0.95: 1.0)
+                .animation (.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
+    }
 }
-
 #Preview {
     Login()
 }
+
