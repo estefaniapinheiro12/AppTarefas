@@ -1,51 +1,36 @@
-//
-//  TaskListView.swift
-//  Gerenciador-de-Tarefas
-//
-//  Created by iredefbmac_24 on 29/01/25.
-//
-
 import SwiftUI
 
 struct TaskListView: View {
-    @Binding var taskList: [Task]
-    
+    @ObservedObject var viewModel: HomeViewModel
+    var tasks: [Task] 
+
+    // Função para formatar a data
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+
     var body: some View {
-        VStack(alignment: .leading) {
-            ForEach(taskList, id: \.id) { task in
-                // TODO:
-                // SUBSTITUIR TUDO ISSO PELO COMPONENTE TaskCard())
-                HStack {
-                    Text(task.name)
-                        .padding(.vertical, 5)
-                        .font(.body)
-                        .foregroundColor(.black)
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: EditReminder()){
-                        Image(systemName: "pencil")
-                            .foregroundColor(.blue)
-                            .padding(.trailing, 10)
-                    }
-                    
-                    Button(action: {
-                        taskList.removeAll(where: {$0.id == task.id})
-                    }) {
-                        Image(systemName: "trash")
-                            .foregroundColor(.red)
-                            .padding(.trailing, 10)
-                    }
+        VStack(alignment: .leading, spacing: 15) {
+            ForEach(tasks) { task in
+                NavigationLink(
+                    destination: ViewReminder(
+                        taskTitle: task.name,
+                        taskDescription: task.description,
+                        taskDate: formatDate(task.deadline) // Formatando a data
+                    )
+                ) {
+                    Card(task: task, taskList: $viewModel.activeTaskList, color: Color.blue)
+                        .padding([.horizontal, .top])
                 }
-                .padding(.vertical, 10)
-                .background(Color.white.opacity(0.1))
-                .cornerRadius(10)
-                .padding(.bottom, 5)
             }
             
-            if taskList.isEmpty {
+            if tasks.isEmpty {
                 Text("Nenhuma tarefa adicionada :(")
                     .padding()
+                    .foregroundColor(.gray)
             }
         }
         .padding(.bottom, 20)

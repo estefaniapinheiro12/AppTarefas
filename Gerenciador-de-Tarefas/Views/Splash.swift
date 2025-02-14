@@ -16,7 +16,7 @@ struct Splash: View {
     var body: some View {
         if isActive {
             Login()
-        }else {
+        } else {
             ZStack {
                 
                 LinearGradient(
@@ -61,6 +61,4 @@ struct Splash: View {
     }
 }
 
-#Preview {
-    Splash()
-}
+

@@ -1,30 +1,20 @@
-//
-//  EditReminder.swift
-//  Gerenciador-de-Tarefas
-//
-//  Created by iredefbmac_24 on 25/12/24.
-//
-
 import Foundation
 import SwiftUI
 
 struct EditReminder: View {
-    
-    @State private var taskTitle = ""
-    @State private var taskDescription = ""
-    @State private var taskDate = ""
+    @Binding var task: Task
+    @Binding var taskList: [Task]
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationView {
         VStack(alignment: .leading, spacing: 20) {
-            TextField("Título da tarefa", text: $taskTitle)
+            TextField("Título da tarefa", text: $task.name)
                 .font(.largeTitle)
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
-            TextField("Data da Tarefa", text: $taskDate)
+            DatePicker("Data da Tarefa", selection: $task.deadline, displayedComponents: .date)
                 .font(.subheadline)
                 .foregroundStyle(.gray)
                 .padding()
@@ -34,7 +24,7 @@ struct EditReminder: View {
                 .font(.headline)
                 .padding(.top)
             
-            TextEditor(text: $taskDescription)
+            TextEditor(text: $task.description)
                 .font(.body)
                 .padding()
                 .frame(height: 200)
@@ -42,7 +32,7 @@ struct EditReminder: View {
                 .cornerRadius(10)
             
             Button(action: saveTask) {
-                Text("Salvar + ")
+                Text("Salvar")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
@@ -56,26 +46,30 @@ struct EditReminder: View {
         }
         .padding()
         .navigationBarTitle("Editar Tarefa", displayMode: .inline)
+        .navigationBarBackButtonHidden(true) // Remover o back automático
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading){
+            ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     dismiss()
                 }) {
-                    Image (systemName: "chevron.backward")
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     Text("Voltar")
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.blue)
                 }
-                
             }
         }
     }
-}
-private func saveTask() {
-    print("Tarefa salva: \(taskTitle), \(taskDescription), \(taskDate)")
+    
+    private func saveTask() {
+        if let index = taskList.firstIndex(where: { $0.id == task.id }) {
+            taskList[index] = task
+            saveTasksToUserDefaults()
+        }
+        dismiss()
     }
     
-}
-#Preview {
-    EditReminder()
+    private func saveTasksToUserDefaults() {
+        if let encoded = try? JSONEncoder().encode(taskList) {
+            UserDefaults.standard.set(encoded, forKey: "tasks")
+        }
+    }
 }
