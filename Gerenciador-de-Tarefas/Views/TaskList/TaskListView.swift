@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TaskListView: View {
     @ObservedObject var viewModel: HomeViewModel
-    var tasks: [Task] 
+    var tasks: [Task] // Agora aceita um array normal de tarefas
 
     // Função para formatar a data
     private func formatDate(_ date: Date) -> String {
@@ -26,7 +26,7 @@ struct TaskListView: View {
                         .padding([.horizontal, .top])
                 }
             }
-            
+
             if tasks.isEmpty {
                 Text("Nenhuma tarefa adicionada :(")
                     .padding()

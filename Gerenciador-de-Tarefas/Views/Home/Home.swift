@@ -1,8 +1,4 @@
-
 import SwiftUI
-
-
-// Se atentar em seguir o padrao de nomeclatura de variaveis: ou tudo em ingles ou tudo em pt
 
 struct Home: View {
     @StateObject private var viewModel = HomeViewModel()
@@ -12,24 +8,29 @@ struct Home: View {
     var filteredTasks: [Task] {
         switch selectedFilter {
         case .withinDeadline:
-            return viewModel.activeTaskList.filter { $0.deadline.isSameDay(as: Date()) || $0.deadline > Date() }
+            return viewModel.activeTaskList.filter { !$0.isCompleted && ($0.deadline.isSameDay(as: Date()) || $0.deadline > Date()) }
         case .expired:
-            return viewModel.activeTaskList.filter { !$0.deadline.isSameDay(as: Date()) && $0.deadline < Date() }
+            return viewModel.activeTaskList.filter { !$0.isCompleted && !$0.deadline.isSameDay(as: Date()) && $0.deadline < Date() }
+        case .completed:
+            return viewModel.filterCompletedTasks()
         }
     }
 
     var body: some View {
         NavigationView {
             VStack {
+                // Filtro de tarefas
                 Picker("Filtrar Tarefas", selection: $selectedFilter) {
                     Text("Dentro do Prazo").tag(TaskFilter.withinDeadline)
                     Text("Expiradas").tag(TaskFilter.expired)
+                    Text("Concluídas").tag(TaskFilter.completed) // Novo filtro para tarefas concluídas
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
 
                 ScrollView {
                     VStack(spacing: 40) {
+                        // Exibe a lista de tarefas filtradas
                         TaskListView(viewModel: viewModel, tasks: filteredTasks)
                     }
                     .padding()
@@ -37,11 +38,20 @@ struct Home: View {
 
                 Spacer()
 
-                Button("Criar nova tarefa", action: {
+                // Botão para criar nova tarefa
+                Button(action: {
                     isSheetOpen = true
-                })
-                .buttonStyle(.borderedProminent)
-                .padding(.bottom, 20)
+                }) {
+                    Text("Criar nova tarefa")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal, 50)
+                .padding(.bottom, 70)
             }
             .sheet(isPresented: $isSheetOpen) {
                 CreateTaskView(viewModel: viewModel)
@@ -50,8 +60,4 @@ struct Home: View {
         }
         .navigationBarBackButtonHidden(true)
     }
-}
-
-#Preview {
-    Home()
 }

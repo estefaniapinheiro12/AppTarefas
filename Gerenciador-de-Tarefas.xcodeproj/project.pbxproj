@@ -28,6 +28,8 @@
 		0283A3032D4A98F900A63B99 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A3022D4A98F900A63B99 /* HomeViewModel.swift */; };
 		0283A3062D51466900A63B99 /* TaskFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A3052D51466900A63B99 /* TaskFilter.swift */; };
 		0283A3082D5A9B9B00A63B99 /* DateExtesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A3072D5A9B9B00A63B99 /* DateExtesions.swift */; };
+		0283A3102D6BB13C00A63B99 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A30F2D6BB13C00A63B99 /* CustomTextField.swift */; };
+		0283A3122D6BB15D00A63B99 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283A3112D6BB15D00A63B99 /* CustomSecureField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		0283A3022D4A98F900A63B99 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0283A3052D51466900A63B99 /* TaskFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFilter.swift; sourceTree = "<group>"; };
 		0283A3072D5A9B9B00A63B99 /* DateExtesions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtesions.swift; sourceTree = "<group>"; };
+		0283A30F2D6BB13C00A63B99 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		0283A3112D6BB15D00A63B99 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				0283A2F92D3190FA00A63B99 /* Card.swift */,
+				0283A30F2D6BB13C00A63B99 /* CustomTextField.swift */,
+				0283A3112D6BB15D00A63B99 /* CustomSecureField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				027E18492D0C7F9800E9AFFD /* SignUp.swift in Sources */,
 				027E181E2D0BD71600E9AFFD /* ContentView.swift in Sources */,
 				0283A3062D51466900A63B99 /* TaskFilter.swift in Sources */,
+				0283A3102D6BB13C00A63B99 /* CustomTextField.swift in Sources */,
 				0283A3012D4A969300A63B99 /* TaskListView.swift in Sources */,
 				027E184C2D0C810100E9AFFD /* Color.swift in Sources */,
 				0283A3032D4A98F900A63B99 /* HomeViewModel.swift in Sources */,
@@ -370,6 +377,7 @@
 				0283A2F72D21822C00A63B99 /* ViewReminder.swift in Sources */,
 				027E181C2D0BD71600E9AFFD /* Gerenciador_de_TarefasApp.swift in Sources */,
 				0283A3082D5A9B9B00A63B99 /* DateExtesions.swift in Sources */,
+				0283A3122D6BB15D00A63B99 /* CustomSecureField.swift in Sources */,
 				0283A2FA2D3190FA00A63B99 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

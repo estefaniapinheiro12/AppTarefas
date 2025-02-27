@@ -8,52 +8,73 @@ struct EditReminder: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            TextField("Título da tarefa", text: $task.name)
-                .font(.largeTitle)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            DatePicker("Data da Tarefa", selection: $task.deadline, displayedComponents: .date)
-                .font(.subheadline)
-                .foregroundStyle(.gray)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Text("Descrição")
-                .font(.headline)
-                .padding(.top)
-            
-            TextEditor(text: $task.description)
-                .font(.body)
-                .padding()
-                .frame(height: 200)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(10)
-            
-            Button(action: saveTask) {
-                Text("Salvar")
-                    .font(.headline)
-                    .foregroundColor(.white)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                TextField("Título da tarefa", text: $task.name)
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.systemGray6)))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                    .padding(.horizontal)
+                
+                DatePicker("Data da Tarefa", selection: $task.deadline, displayedComponents: .date)
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.systemGray6)))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                    .padding(.horizontal)
+                
+                Text("Descrição")
+                    .font(.system(size: 22, weight: .semibold, design: .rounded))
+                    .padding(.horizontal)
+                
+                TextEditor(text: $task.description)
+                    .font(.system(size: 18, weight: .regular, design: .rounded))
+                    .padding()
+                    .frame(height: 200)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color(UIColor.systemGray6)))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                    )
+                    .shadow(radius: 2)
+                    .padding(.horizontal)
+                
+                Button(action: saveTask) {
+                    Text("Salvar")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.blue))
+                        .shadow(radius: 2)
+                }
+                .padding(.horizontal)
+                .padding(.top)
+                
+                Spacer()
             }
             .padding(.top)
-            
-            Spacer()
         }
-        .padding()
         .navigationBarTitle("Editar Tarefa", displayMode: .inline)
-        .navigationBarBackButtonHidden(true) // Remover o back automático
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     dismiss()
                 }) {
-                    Text("Voltar")
-                        .foregroundColor(.blue)
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("Voltar")
+                    }
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .foregroundColor(.blue)
                 }
             }
         }
@@ -73,3 +94,4 @@ struct EditReminder: View {
         }
     }
 }
+

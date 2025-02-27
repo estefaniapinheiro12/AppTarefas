@@ -4,6 +4,7 @@
 //
 //  Created by iredefbmac_24 on 23/12/24.
 //
+
 import Foundation
 import SwiftUI
 
@@ -15,33 +16,71 @@ struct CreateTaskView: View {
     @State private var taskDescription = ""
     
     var body: some View {
-        VStack(spacing: 16) {
-            Text("Adicionar nova tarefa").font(.title)
+        VStack(spacing: 24) {
+            Text("Adicionar Nova Tarefa")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+                .padding(.top, 32)
             
-            VStack(alignment: .leading) {
-                Text("Título da tarefa")
-                TextField("Ex: alimentar gato", text: $taskTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Título da Tarefa")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                TextField("Ex: Alimentar o gato", text: $taskTitle)
+                    .padding(16)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1))
             }
             
-            VStack(alignment: .leading) {
-                Text("Descrição da tarefa")
-                TextField("Ex: quando voltar da faculdade", text: $taskDescription)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Descrição da Tarefa")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                TextField("Ex: Quando voltar da faculdade", text: $taskDescription)
+                    .padding(16)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1))
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("Prazo da tarefa")
+                Text("Prazo da Tarefa")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
                 DatePicker("Selecione a data", selection: $dueDate, in: Date()..., displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
             }
             
-            Button("Adicionar tarefa") {
+            Button(action: {
                 saveTask()
                 dismiss()
+            }) {
+                Text("Adicionar Tarefa")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.blue))
+                    .shadow(radius: 2)
             }
+            .padding(.horizontal)
+            .padding(.top, 16)
+            .padding(.bottom, 16) // Ajuste do espaçamento inferior
+            
         }
-        .padding()
+        .padding(24)
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(radius: 10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.gray.opacity(0.1).edgesIgnoringSafeArea(.all))
     }
     
     private func saveTask() {

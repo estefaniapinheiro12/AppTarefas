@@ -11,4 +11,5 @@ struct Task: Codable, Identifiable {
     var name: String
     var description: String
     var deadline: Date
+    var isCompleted: Bool = false
 }

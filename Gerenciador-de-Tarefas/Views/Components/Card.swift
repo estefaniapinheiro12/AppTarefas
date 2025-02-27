@@ -1,41 +1,36 @@
 import SwiftUI
 
 struct Card: View {
-    @State var task: Task 
+    @State var task: Task
     @Binding var taskList: [Task]
     var color: Color
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(task.name)
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    
-                    Text(task.description)
-                        .font(.subheadline)
-                        .foregroundColor(.white)
-                        .lineLimit(3)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(color)
-                .cornerRadius(10)
-                .shadow(radius: 5)
+        HStack(spacing: 15) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(task.name)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                
+                Text(task.description)
+                    .font(.body)
+                    .foregroundColor(.white.opacity(0.8))
+                    .lineLimit(2)
             }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            HStack {
+            VStack(spacing: 10) {
                 NavigationLink(destination: EditReminder(task: $task, taskList: $taskList)) {
                     Image(systemName: "pencil")
                         .foregroundColor(.white)
-                        .padding(10)
-                        .background(Color.blue.opacity(0.7))
+                        .padding(12)
+                        .background(Color.green)
                         .clipShape(Circle())
-                        .shadow(radius: 5)
+                        .shadow(radius: 4)
                 }
-                
-                Spacer()
                 
                 Button(action: {
                     if let index = taskList.firstIndex(where: { $0.id == task.id }) {
@@ -44,22 +39,29 @@ struct Card: View {
                 }) {
                     Image(systemName: "trash")
                         .foregroundColor(.white)
-                        .padding(10)
-                        .background(Color.red.opacity(0.7))
+                        .padding(12)
+                        .background(Color.red)
                         .clipShape(Circle())
-                        .shadow(radius: 5)
+                        .shadow(radius: 4)
+                }
+                
+                Button(action: {
+                    if let index = taskList.firstIndex(where: { $0.id == task.id }) {
+                        taskList[index].isCompleted.toggle()
+                    }
+                }) {
+                    Image(systemName: task.isCompleted ? "arrow.uturn.left" : "checkmark")
+                        .foregroundColor(.white)
+                        .padding(12)
+                        .background(task.isCompleted ? Color.orange : Color.blue)
+                        .clipShape(Circle())
+                        .shadow(radius: 4)
                 }
             }
-            .padding([.horizontal, .bottom])
         }
         .padding()
-        .background(color)
-        .cornerRadius(15)
-        .shadow(radius: 10)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.blue.opacity(0.3), lineWidth: 2)
-        )
-        .padding([.horizontal, .bottom])
+        .background(color.gradient)
+        .cornerRadius(20)
+        .shadow(color: color.opacity(0.3), radius: 10, x: 0, y: 5)
     }
 }

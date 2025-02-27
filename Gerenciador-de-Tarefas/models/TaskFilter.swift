@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum TaskFilter{
+enum TaskFilter {
     case withinDeadline
     case expired
+    case completed // Novo filtro para tarefas concluídas
 }

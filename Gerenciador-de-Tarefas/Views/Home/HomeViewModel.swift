@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     @Published var activeTaskList: [Task] = [] {
@@ -40,5 +39,24 @@ final class HomeViewModel: ObservableObject {
     
     func removeTask(_ task: Task) {
         activeTaskList.removeAll { $0.id == task.id }
+    }
+    
+    // Marcar a tarefa como concluída
+    func completeTask(_ task: Task) {
+        if let index = activeTaskList.firstIndex(where: { $0.id == task.id }) {
+            activeTaskList[index].isCompleted = true
+        }
+    }
+    
+    // Reverter a tarefa para "dentro do prazo"
+    func revertTask(_ task: Task) {
+        if let index = activeTaskList.firstIndex(where: { $0.id == task.id }) {
+            activeTaskList[index].isCompleted = false
+        }
+    }
+    
+    // Filtrar tarefas concluídas
+    func filterCompletedTasks() -> [Task] {
+        return activeTaskList.filter { $0.isCompleted }
     }
 }
