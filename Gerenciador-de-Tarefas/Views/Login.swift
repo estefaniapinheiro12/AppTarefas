@@ -16,7 +16,7 @@ struct Login: View {
                 .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 20) {
-                    Text("TaskFlow")
+                    Text("Task Flow")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)

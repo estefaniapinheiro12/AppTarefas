@@ -51,7 +51,7 @@ struct Home: View {
                         .cornerRadius(10)
                 }
                 .padding(.horizontal, 50)
-                .padding(.bottom, 70)
+                
             }
             .sheet(isPresented: $isSheetOpen) {
                 CreateTaskView(viewModel: viewModel)

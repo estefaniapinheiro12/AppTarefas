@@ -55,8 +55,8 @@ struct EditReminder: View {
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color.blue))
                         .shadow(radius: 2)
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding(.horizontal, 50)
+                .padding(.bottom, 70)
                 
                 Spacer()
             }

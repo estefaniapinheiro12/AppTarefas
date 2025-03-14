@@ -6,62 +6,67 @@ struct Card: View {
     var color: Color
     
     var body: some View {
-        HStack(spacing: 15) {
-            VStack(alignment: .leading, spacing: 8) {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(task.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.headline)
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .lineLimit(1)
                 
                 Text(task.description)
-                    .font(.body)
+                    .font(.subheadline)
                     .foregroundColor(.white.opacity(0.8))
                     .lineLimit(2)
             }
-            .padding()
+            .padding(.vertical, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            VStack(spacing: 10) {
+            HStack(spacing: 16) { // Aumentei o espaçamento para evitar cliques acidentais
+                Button(action: toggleCompletion) {
+                    IconButton(icon: task.isCompleted ? "arrow.uturn.left" : "checkmark", color: task.isCompleted ? .orange : .blue)
+                }
+                
                 NavigationLink(destination: EditReminder(task: $task, taskList: $taskList)) {
-                    Image(systemName: "pencil")
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(Color.green)
-                        .clipShape(Circle())
-                        .shadow(radius: 4)
+                    IconButton(icon: "pencil", color: .green)
                 }
                 
-                Button(action: {
-                    if let index = taskList.firstIndex(where: { $0.id == task.id }) {
-                        taskList.remove(at: index)
-                    }
-                }) {
-                    Image(systemName: "trash")
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(Color.red)
-                        .clipShape(Circle())
-                        .shadow(radius: 4)
-                }
-                
-                Button(action: {
-                    if let index = taskList.firstIndex(where: { $0.id == task.id }) {
-                        taskList[index].isCompleted.toggle()
-                    }
-                }) {
-                    Image(systemName: task.isCompleted ? "arrow.uturn.left" : "checkmark")
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(task.isCompleted ? Color.orange : Color.blue)
-                        .clipShape(Circle())
-                        .shadow(radius: 4)
+                Button(action: deleteTask) {
+                    IconButton(icon: "trash", color: .red)
                 }
             }
         }
         .padding()
         .background(color.gradient)
-        .cornerRadius(20)
-        .shadow(color: color.opacity(0.3), radius: 10, x: 0, y: 5)
+        .cornerRadius(16)
+        .shadow(color: color.opacity(0.3), radius: 8, x: 0, y: 4)
+    }
+    
+    private func deleteTask() {
+        if let index = taskList.firstIndex(where: { $0.id == task.id }) {
+            taskList.remove(at: index)
+        }
+    }
+    
+    private func toggleCompletion() {
+        if let index = taskList.firstIndex(where: { $0.id == task.id }) {
+            taskList[index].isCompleted.toggle()
+        }
     }
 }
+
+struct IconButton: View {
+    var icon: String
+    var color: Color
+    
+    var body: some View {
+        Image(systemName: icon)
+            .foregroundColor(.white)
+            .padding(12) // Aumentei um pouco o padding para melhor usabilidade
+            .background(color)
+            .clipShape(Circle())
+            .shadow(radius: 4)
+    }
+}
+
+

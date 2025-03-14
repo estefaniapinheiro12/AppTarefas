@@ -16,7 +16,7 @@ struct SignUp: View {
             .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 20) {
-                Text("Criar Conta")
+                Text("Criar conta")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)

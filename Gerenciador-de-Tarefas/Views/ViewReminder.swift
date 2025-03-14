@@ -59,6 +59,7 @@ struct ViewReminder: View {
             .padding()
         }
         .navigationBarTitle("Detalhes da Tarefa", displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
